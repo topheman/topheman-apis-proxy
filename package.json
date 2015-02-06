@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "DEBUG=topheman-apis-proxy & nodemon ./bin/www",
+    "prod": "NODE_ENV=production npm start"
   },
   "dependencies": {
     "express": "~4.9.0",
