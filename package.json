@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "NODE_ENV=development DEBUG=http nodemon ./bin/www & open http://localhost:9000",
-    "prod": "NODE_ENV=production DEBUG=http npm start & open http://localhost:8080"
+    "dev": "NODE_ENV=development DEBUG=http node ./bin/www",
+    "devdemon": "NODE_ENV=development DEBUG=http nodemon ./bin/www",
+    "prod": "NODE_ENV=production DEBUG=http npm start"
   },
   "dependencies": {
     "body-parser": "~1.8.1",

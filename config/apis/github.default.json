@@ -1,0 +1,9 @@
+{
+  "active" : true,
+  "endpoint" : "/github",
+  "cors" : [],
+  "credentials" : {
+    "clientId" : "XXXXXX",
+    "clientSecret" : "XXXXXX"
+  }
+}

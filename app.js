@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var config = require('./config/environment');
+var apis = require('./config/apis');
 
 var indexRouter = require('./routes/index');
 var githubRouter = require('./routes/github');
@@ -19,7 +19,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use('/', indexRouter);
-app.use('/github', githubRouter);
+
+if(apis.github.active === true){
+  app.use(apis.github.endpoint, githubRouter);
+}
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
