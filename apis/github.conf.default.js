@@ -1,3 +1,7 @@
+/*
+ * This is the default configuration of the github handler
+ * To make it work, copy this filt to github.conf.js (which will be gitignored and set your credentials there)
+ */
 module.exports = {
   "active" : true,
   "endpoint" : "/github",
