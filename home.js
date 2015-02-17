@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  var apis = require('../config/apis');
+  var apis = require('./apis');
   var port = req.app.settings.port;
   var baseEndpoint = req.protocol + "://" + req.hostname + ( port == 80 || port == 443 ? '' : ':'+port );
   var json = {
