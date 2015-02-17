@@ -1,4 +1,4 @@
 node_modules
 nbproject
 npm-debug.log
-config/apis/github.json
+apis/github.conf.js
