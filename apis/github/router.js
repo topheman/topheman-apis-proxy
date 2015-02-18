@@ -5,7 +5,6 @@
 
 var express = require('express');
 var router = express.Router();
-var config = require('./github.conf');
 
 /* GET users listing. */
 router.get('/', function(req, res) {

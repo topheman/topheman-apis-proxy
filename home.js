@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var config = require('./config/environment');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -13,7 +14,7 @@ router.get('/', function(req, res) {
     "apis" : {}
   };
   for(var api in apis){
-    if(apis[api].active === true){
+    if(config[api].active === true){
       json.apis[api] = {
         "endpoint" : baseEndpoint+apis[api].endpoint
       };

@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var expressCors = require('express-cors')
 var cors = require('cors')
 var apis = require('./apis');
+var config = require('./config/environment');
 
 var homeRouter = require('./home');
 
@@ -47,9 +48,9 @@ function getCorsOptions(apiOptions){
 }
 
 for(var api in apis){
-  if(apis[api].active === true){
+  if(config[api].active === true){
     //CORS setup
-    var corsOptionsFromConfig = getCorsOptions(apis[api]);
+    var corsOptionsFromConfig = getCorsOptions(config[api]);
     if(corsOptionsFromConfig === true){
       app.use(apis[api].endpoint,cors());
     }
