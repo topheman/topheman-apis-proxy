@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressCors = require('express-cors')
+var cors = require('cors')
 var apis = require('./apis');
 
 var homeRouter = require('./home');
@@ -19,8 +21,45 @@ app.use(cookieParser());
 
 app.use('/', homeRouter);
 
+function getCorsOptions(apiOptions){
+  var result = false;
+  if(typeof apiOptions.cors === 'undefined' || apiOptions.cors === false){
+    result = false;
+  }
+  else if(apiOptions.cors === true){
+    result = true;
+  }
+  else if(apiOptions.cors instanceof Array){
+    if(apiOptions.cors.length === 0){
+      result = false;
+    }
+    else if(apiOptions.cors.indexOf('*') > -1){
+      result = true;
+    }
+    else{
+      result = apiOptions.cors;
+    }
+  }
+  else if(typeof apiOptions.cors === 'string'){
+    result = [apiOptions.cors];
+  }
+  return result;
+}
+
 for(var api in apis){
   if(apis[api].active === true){
+    //CORS setup
+    var corsOptionsFromConfig = getCorsOptions(apis[api]);
+    if(corsOptionsFromConfig === true){
+      app.use(apis[api].endpoint,cors());
+    }
+    else if(corsOptionsFromConfig instanceof Array && corsOptionsFromConfig.length > 0){
+      console.log(apis[api].endpoint, corsOptionsFromConfig);
+      app.use(apis[api].endpoint,cors({
+        allowedOrigins : corsOptionsFromConfig
+      }));
+    }
+    //api endpoint setup
     app.use(apis[api].endpoint, apis[api].router);
   }
 }
