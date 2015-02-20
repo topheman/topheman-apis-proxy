@@ -60,8 +60,8 @@ for(var api in apis){
         allowedOrigins : corsOptionsFromConfig
       }));
     }
-    //api endpoint setup
-    app.use(apis[api].endpoint, apis[api].router);
+    //api endpoint setup - default entry point of handler is a module called "router" in each api folder
+    app.use(apis[api].endpoint, require(path.resolve(apis[api].path,'./router')) );
   }
 }
 
