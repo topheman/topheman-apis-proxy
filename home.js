@@ -14,7 +14,7 @@ router.get('/', function(req, res) {
     "apis" : {}
   };
   for(var api in apis){
-    if(config[api].active === true){
+    if(typeof config[api] === 'object' && config[api].active === true){
       json.apis[api] = {
         "endpoint" : baseEndpoint+apis[api].endpoint
       };

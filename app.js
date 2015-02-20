@@ -48,7 +48,7 @@ function getCorsOptions(apiOptions){
 }
 
 for(var api in apis){
-  if(config[api].active === true){
+  if(typeof config[api] === 'object' && config[api].active === true){
     //CORS setup
     var corsOptionsFromConfig = getCorsOptions(config[api]);
     if(corsOptionsFromConfig === true){
