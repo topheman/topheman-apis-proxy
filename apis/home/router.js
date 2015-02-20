@@ -25,12 +25,17 @@ router.get('/', function(req, res) {
   for(var api in apis){
     if(typeof config[api] === 'object' && apis[api].endpoint !== '/' && config[api].active === true){
       infos.apis[api] = {
-        "endpoint" : baseEndpoint+apis[api].endpoint
+        "endpoint" : baseEndpoint+apis[api].endpoint,
+        "description" : apis[api].description
       };
     }
   }
   
   if(req.accepts('html')){
+    var linkify = require("html-linkify");
+    for(var api in infos.apis){
+      infos.apis[api].description = linkify(infos.apis[api].description);
+    }
     res.render('home',infos);
   }
   else if(req.accepts('json')){

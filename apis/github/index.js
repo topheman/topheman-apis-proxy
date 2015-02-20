@@ -12,5 +12,6 @@
  */
 module.exports = {
   "endpoint" : "/github",
+  "description" : "This handler is a proxy to the public API of github, learn more at https://developer.github.com/v3/",
   "path" : __dirname
 };

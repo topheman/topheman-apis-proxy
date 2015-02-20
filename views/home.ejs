@@ -14,7 +14,12 @@
     <p><%= description %></p>
     <ul>
       <% for(var api in apis) { %>
-      <li><a href="<%= apis[api].endpoint %>" title="<%= api %>"><%= apis[api].endpoint %></a></li>
+      <li>
+        <a href="<%= apis[api].endpoint %>" title="<%= api %>"><%= apis[api].endpoint %></a>
+        <% if(apis[api].description) { %>
+         - <%- apis[api].description %>
+        <% } %>
+      </li>
       <% }; %>
     </ul>
   </body>
