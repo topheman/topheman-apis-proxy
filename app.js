@@ -9,8 +9,6 @@ var cors = require('cors')
 var apis = require('./apis');
 var config = require('./config/environment');
 
-var homeRouter = require('./home');
-
 var app = express();
 
 // uncomment after placing your favicon in /public
@@ -20,7 +18,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-app.use('/', homeRouter);
+// set the view engine to ejs
+app.set('views', __dirname+'/views');
+app.set('view engine', 'ejs');
 
 function getCorsOptions(apiOptions){
   var result = false;

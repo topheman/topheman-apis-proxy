@@ -8,7 +8,8 @@
  */
 
 var all = {
-  github : require('./github')
+  github : require('./github'),
+  home : require('./home')
 };
 
 module.exports = all;
