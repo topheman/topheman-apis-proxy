@@ -31,15 +31,42 @@ router.get('/', function(req, res) {
     }
   }
   
-  if(req.accepts('html')){
+  //OK went a little nuts ... it was fun to add xml support in top of html and json ;-)
+  
+  function sendHtml(res,infos){
     var linkify = require("html-linkify");
     for(var api in infos.apis){
       infos.apis[api].description = linkify(infos.apis[api].description);
     }
     res.render('home',infos);
   }
-  else if(req.accepts('json')){
+  
+  function sendJson(res,infos){
     res.json(infos);
+  }
+  
+  function sendXml(res,infos){
+    var js2xmlparser = require("js2xmlparser");
+    res.set('Content-Type', 'text/xml');
+    res.send(js2xmlparser("topheman-apis-proxy",infos));
+  }
+  
+  if(req.accepts('html') && req.query.format !== 'json' && req.query.format !== 'xml'){
+    sendHtml(res,infos);
+  }
+  else if(req.query.format === "json" || req.query.format === "xml"){
+    if(req.query.format === "json"){
+      sendJson(res,infos);
+    }
+    else if(req.query.format === "xml"){
+      sendXml(res,infos);
+    }
+  }
+  else if(req.accepts('json')){
+    sendJson(res,infos);
+  }
+  else if((req.query.format !== 'json' && req.query.format === 'xml') || req.accepts('xml')){
+    sendXml(res,infos);
   }
 });
 
