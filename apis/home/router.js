@@ -2,6 +2,25 @@ var express = require('express');
 var router = express.Router();
 var config = require('../../config/environment');
 
+var sendAs = {
+  html : function(res,infos){
+    var linkify = require("html-linkify");
+    for(var api in infos.apis){
+      infos.apis[api].description = linkify(infos.apis[api].description);
+    }
+    res.render('home',infos);
+  },
+  json : function(res,infos){
+    res.json(infos);
+  },
+  xml : function(res,infos){
+    var js2xmlparser = require("js2xmlparser");
+    res.set('Content-Type', 'text/xml');
+    res.send(js2xmlparser("topheman-apis-proxy",infos));
+  }
+};
+var formatsAccepted = Object.keys(sendAs);
+
 /* GET home page. */
 router.get('/', function(req, res) {
   var apis = require('../../apis')(req.app.get('env'));
@@ -31,42 +50,21 @@ router.get('/', function(req, res) {
     }
   }
   
-  //OK went a little nuts ... it was fun to add xml support in top of html and json ;-)
-  
-  function sendHtml(res,infos){
-    var linkify = require("html-linkify");
-    for(var api in infos.apis){
-      infos.apis[api].description = linkify(infos.apis[api].description);
-    }
-    res.render('home',infos);
+  if(req.query.format !== "" && formatsAccepted.indexOf(req.query.format) > -1){
+    sendAs[req.query.format](res,infos);
   }
-  
-  function sendJson(res,infos){
-    res.json(infos);
-  }
-  
-  function sendXml(res,infos){
-    var js2xmlparser = require("js2xmlparser");
-    res.set('Content-Type', 'text/xml');
-    res.send(js2xmlparser("topheman-apis-proxy",infos));
-  }
-  
-  if(req.accepts('html') && req.query.format !== 'json' && req.query.format !== 'xml'){
-    sendHtml(res,infos);
-  }
-  else if(req.query.format === "json" || req.query.format === "xml"){
-    if(req.query.format === "json"){
-      sendJson(res,infos);
-    }
-    else if(req.query.format === "xml"){
-      sendXml(res,infos);
-    }
-  }
-  else if(req.accepts('json')){
-    sendJson(res,infos);
-  }
-  else if((req.query.format !== 'json' && req.query.format === 'xml') || req.accepts('xml')){
-    sendXml(res,infos);
+  else{
+    res.format({
+      'text/html' : function(){
+        sendAs.html(res,infos);
+      },
+      'application/json' : function(){
+        sendAs.json(res,infos);
+      },
+      'application/xml' : function(){
+        sendAs.xml(res,infos);
+      }
+    });
   }
 });
 
