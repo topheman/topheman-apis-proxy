@@ -4,7 +4,7 @@ var config = require('../../config/environment');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  var apis = require('../../apis');
+  var apis = require('../../apis')(req.app.get('env'));
   var port = req.app.settings.port;
   var baseEndpoint = req.protocol + "://" + req.hostname + ( port == 80 || port == 443 ? '' : ':'+port );
   var infos = {

@@ -12,4 +12,13 @@ var all = {
   home : require('./home')
 };
 
-module.exports = all;
+function getApisDescription(environment){
+  if(environment === 'test'){
+    return require('../tests/mocks/apis');
+  }
+  else{
+    return all;
+  }
+}
+
+module.exports = getApisDescription;

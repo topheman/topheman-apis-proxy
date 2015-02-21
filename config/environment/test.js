@@ -7,7 +7,7 @@ module.exports = {
     active : true,
     cors : []
   },
-  github : {
+  one : {
     active : true,
     cors : []
   }

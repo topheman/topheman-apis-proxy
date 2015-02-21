@@ -10,13 +10,7 @@ var config = require('./config/environment');
 
 var app = express();
 
-var apis;
-if(app.get('env') === 'test'){
-  apis = require('./tests/mocks/apis');
-}
-else{
-  apis = require('./apis');
-}
+var apis = require('./apis')(app.get('env'));
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
