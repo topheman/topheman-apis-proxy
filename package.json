@@ -5,10 +5,12 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha",
     "dev": "NODE_ENV=development DEBUG=http node ./bin/www",
-    "devdemon": "NODE_ENV=development DEBUG=http nodemon ./bin/www",
+    "debug": "NODE_ENV=development DEBUG=http nodemon ./bin/www",
     "prod": "NODE_ENV=production DEBUG=http npm start",
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha"
+    "www-test": "NODE_ENV=test DEBUG=http npm start",
+    "www-test-debug": "NODE_ENV=test DEBUG=http nodemon ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.8.1",

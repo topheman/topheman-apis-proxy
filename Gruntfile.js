@@ -91,9 +91,6 @@ module.exports = function(grunt){
   });
   
   grunt.registerTask('serve', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'open', 'express-keepalive']);
-    }
 
     if (target === 'debug') {
       return grunt.task.run([
@@ -117,6 +114,15 @@ module.exports = function(grunt){
         'env:all',
         'env:test',
         'concurrent:debug'
+      ]);
+    }
+    
+    if (target === 'prod') {
+      return grunt.task.run([
+        'env:all',
+        'env:prod',
+        'express:dev',
+        'express-keepalive'
       ]);
     }
 
