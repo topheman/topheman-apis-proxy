@@ -40,6 +40,10 @@ module.exports = function(grunt){
         NODE_ENV: 'development',
         DEBUG: 'http'
       },
+      test: {
+        NODE_ENV: 'test',
+        DEBUG: 'http'
+      },
       all: localEnv
     },
 
@@ -95,6 +99,23 @@ module.exports = function(grunt){
       return grunt.task.run([
         'env:all',
         'env:dev',
+        'concurrent:debug'
+      ]);
+    }
+    
+    if (target === 'test') {
+      return grunt.task.run([
+        'env:all',
+        'env:test',
+        'express:dev',
+        'express-keepalive'
+      ]);
+    }
+    
+    if (target === 'test-debug') {
+      return grunt.task.run([
+        'env:all',
+        'env:test',
         'concurrent:debug'
       ]);
     }

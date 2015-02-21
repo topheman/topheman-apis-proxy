@@ -6,10 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressCors = require('express-cors')
 var cors = require('cors')
-var apis = require('./apis');
 var config = require('./config/environment');
 
 var app = express();
+
+var apis;
+if(app.get('env') === 'test'){
+  apis = require('./tests/mocks/apis');
+}
+else{
+  apis = require('./apis');
+}
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
