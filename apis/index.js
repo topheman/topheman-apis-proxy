@@ -14,7 +14,7 @@ var all = {
 
 function getApisDescription(environment){
   if(environment === 'test'){
-    return require('../tests/mocks/apis');
+    return require('../test/mocks/apis');
   }
   else{
     return all;
