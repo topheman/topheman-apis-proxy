@@ -57,7 +57,7 @@ for(var api in apis){
     }
     else if(corsOptionsFromConfig instanceof Array && corsOptionsFromConfig.length > 0){
       console.log(apis[api].endpoint, corsOptionsFromConfig);
-      app.use(apis[api].endpoint,cors({
+      app.use(apis[api].endpoint,expressCors({
         allowedOrigins : corsOptionsFromConfig
       }));
     }

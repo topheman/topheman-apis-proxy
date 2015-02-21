@@ -30,7 +30,7 @@ describe('home page', function () {
       });
     });
 
-    describe('based on query parameters (takes precedance on Accept Headers', function () {
+    describe('based on query parameters (takes precedence on Accept Headers)', function () {
       it('should respond with application/json content-type when query ?format=json', function (done) {
         request(app)
                 .get('/?format=json')
@@ -70,5 +70,10 @@ describe('home page', function () {
                 .end(done);
       });
     });
+    
+    describe('Listing of the active apis', function(){
+      
+    });
+    
   });
 });

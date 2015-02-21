@@ -6,9 +6,14 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res) {
+router.get('/*', function(req, res) {
   res.json({
-    "list of apis" : []
+    baseUrl : req.baseUrl,
+    hostname : req.hostname,
+    originalUrl : req.originalUrl,
+    params : req.params,
+    path : req.path,
+    query : req.query
   });
 });
 
