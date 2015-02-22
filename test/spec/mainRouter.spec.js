@@ -17,7 +17,7 @@ describe('Main router', function () {
               if(result.error && !result.error.message){
                 return "No message in error in response";
               }
-              if(result.error && result.error.message && result.error.message !== "Not found"){
+              if(result.error && result.error.message && result.error.message !== "Not Found"){
                 return "Uncorrect response, error.message should be \"Not found\"";
               }
             })
