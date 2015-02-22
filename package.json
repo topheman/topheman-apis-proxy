@@ -1,7 +1,7 @@
 {
   "name": "topheman-apis-proxy",
   "description": "Access your public APIs on the same server, benefite from the existing proxies developed or create yours.",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
