@@ -1,6 +1,7 @@
 var app = require('../../app');
 var request = require('supertest');
 var should = require('should');
+var expect = require('chai').expect;
 
 describe('home page', function () {
   describe('reponse Content-Type', function () {
@@ -72,7 +73,39 @@ describe('home page', function () {
     });
     
     describe('Listing of the active apis', function(){
-      
+      it('api list should be correct (taking in account the active part of config)',function(done){
+        request(app)
+                .get('/')
+                .set('Accept', 'application/json, text/javascript, */*; q=0.01')
+                .expect(200)
+                .expect('Content-Type', 'application/json; charset=utf-8')
+                .expect(function(res){
+                  try{
+                    var result = res.body;
+                    if(!result.apis){
+                      return "No APIs listed";
+                    }
+                    else{
+                      var apiList = Object.keys(result.apis);
+                      expect([
+                        'testActive1',
+                        'testCorsActive1',
+                        'testCorsActive2',
+                        'testCorsActive3',
+                        'testCorsActive4',
+                        'testCorsActive5',
+                        'testCorsPattern1',
+                        'testCorsPattern2',
+                        'testCorsPattern3' 
+                      ]).to.eql(apiList);
+                    }
+                  }
+                  catch(e){
+                    return e.message;
+                  }
+                })
+                .end(done);
+      });
     });
     
   });
