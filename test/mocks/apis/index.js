@@ -3,6 +3,8 @@
  * It's only meant to be used in tests
  */
 
+'use strict';
+
 var config = require('../../../config/environment');
 var path = require('path');
 

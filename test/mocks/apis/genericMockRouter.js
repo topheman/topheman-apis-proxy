@@ -2,6 +2,8 @@
  * This router is used in all the mock routers
  */
 
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 

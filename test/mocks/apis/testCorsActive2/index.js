@@ -1,6 +1,5 @@
-/*
- * 
- */
+'use strict';
+
 module.exports = {
   "endpoint" : "/testCorsActive2",
   "description" : "This is a mock handler",

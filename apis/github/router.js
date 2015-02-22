@@ -3,6 +3,8 @@
  * Its handler and all of its behavior are described in github.conf.js
  */
 
+'use strict';
+
 var express = require('express');
 var router = express.Router();
 

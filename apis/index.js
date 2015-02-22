@@ -7,6 +7,8 @@
  *   (and of course local.env.js if you have existing one)
  */
 
+'use strict';
+
 var all = {
   github : require('./github'),
   home : require('./home')

@@ -1,11 +1,13 @@
+'use strict';
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressCors = require('express-cors')
-var cors = require('cors')
+var expressCors = require('express-cors');
+var cors = require('cors');
 var config = require('./config/environment');
 
 var app = express();

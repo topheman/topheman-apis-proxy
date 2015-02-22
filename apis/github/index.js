@@ -10,6 +10,8 @@
  * it MUST be a module that exports an express.Router
  * 
  */
+'use strict';
+
 module.exports = {
   "endpoint" : "/github",
   "description" : "This handler is a proxy to the public API of github, learn more at https://developer.github.com/v3/",

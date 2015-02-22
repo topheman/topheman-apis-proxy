@@ -10,6 +10,8 @@
  * it MUST be a module that exports an express.Router
  * 
  */
+'use strict';
+
 module.exports = {
   "endpoint" : "/",
   "path" : __dirname

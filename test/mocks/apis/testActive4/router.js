@@ -3,4 +3,6 @@
  * Every mock router use the same router
  */
 
+'use strict';
+
 module.exports = require('../genericMockRouter');
