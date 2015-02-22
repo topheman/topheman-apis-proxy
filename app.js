@@ -16,7 +16,10 @@ var apis = require('./apis')(app.get('env'));
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
+// not to pollute unit testing report with http logs
+if(!process.env.MOCHA_IS_ACTIVE){
+  app.use(logger('dev'));
+}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -58,7 +61,6 @@ for(var api in apis){
       app.use(apis[api].endpoint,cors());
     }
     else if(corsOptionsFromConfig instanceof Array && corsOptionsFromConfig.length > 0){
-      console.log(apis[api].endpoint, corsOptionsFromConfig);
       app.use(apis[api].endpoint,expressCors({
         allowedOrigins : corsOptionsFromConfig
       }));
