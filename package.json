@@ -6,11 +6,12 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha",
-    "dev": "NODE_ENV=development DEBUG=http node ./bin/www",
-    "debug": "NODE_ENV=development DEBUG=http nodemon ./bin/www",
+    "nodemon" : "nodemon ./bin/www",
+    "dev": "NODE_ENV=development DEBUG=http npm start",
+    "debug": "NODE_ENV=development DEBUG=http npm run nodemon",
     "prod": "NODE_ENV=production DEBUG=http npm start",
     "www-test": "NODE_ENV=test DEBUG=http npm start",
-    "www-test-debug": "NODE_ENV=test DEBUG=http nodemon ./bin/www"
+    "www-test-debug": "NODE_ENV=test DEBUG=http npm run nodemon"
   },
   "dependencies": {
     "body-parser": "~1.8.1",
