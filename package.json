@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha",
-    "nodemon" : "nodemon ./bin/www",
+    "nodemon": "nodemon ./bin/www",
     "dev": "NODE_ENV=development DEBUG=http npm start",
     "debug": "NODE_ENV=development DEBUG=http npm run nodemon",
     "prod": "NODE_ENV=production DEBUG=http npm start",
@@ -38,15 +38,13 @@
     "grunt-contrib-copy": "^0.7.0",
     "grunt-env": "^0.4.2",
     "grunt-express-server": "^0.4.19",
-    "grunt-node-inspector": "^0.1.5",
     "grunt-nodemon": "^0.4.0",
     "grunt-open": "^0.2.3",
     "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.1.0",
     "open": "0.0.5",
     "should": "^5.0.1",
-    "supertest": "^0.15.0",
-    "time-grunt": "^1.0.0"
+    "supertest": "^0.15.0"
   },
   "author": "Christophe Rosset <tophe@topheman.com> (https://github.com/topheman)",
   "repository": {
