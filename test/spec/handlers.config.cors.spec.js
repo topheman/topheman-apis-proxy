@@ -157,7 +157,7 @@ describe('Handlers configuration - CORS part', function () {
                 .expect('Access-Control-Allow-Origin', 'http://subdomain.foo.com')
                 .end(done);
       });
-      it('request NOT from subdomain.bar.com should deny CORS', function (done) {
+      it('request from subdomain.bar.com should deny CORS', function (done) {
         request(app)
                 .get('/testCorsPattern3')
                 .expect(200)
