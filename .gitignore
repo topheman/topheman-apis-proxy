@@ -1,5 +1,4 @@
 node_modules
 nbproject
 npm-debug.log
-apis/github.conf.js
 config/local.env.js
