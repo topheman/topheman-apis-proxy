@@ -40,6 +40,7 @@
     "grunt-express-server": "^0.4.19",
     "grunt-nodemon": "^0.4.0",
     "grunt-open": "^0.2.3",
+    "grunt-run": "^0.3.0",
     "load-grunt-tasks": "^3.1.0",
     "mocha": "^2.1.0",
     "open": "0.0.5",
@@ -52,7 +53,7 @@
     "type": "git",
     "url": "https://github.com/topheman/topheman-apis-proxy"
   },
-  "pre-commit":[
+  "pre-commit": [
     "test"
   ]
 }

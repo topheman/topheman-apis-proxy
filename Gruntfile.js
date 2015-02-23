@@ -82,6 +82,14 @@ module.exports = function(grunt){
         src: 'config/local.env.default.js',
         dest: 'config/local.env.js'
       }
+    },
+    
+    // add test task to match npm tasks
+    run: {
+      test: {
+        cmd: "npm",
+        args: ['test']
+      }
     }
     
   });
@@ -137,5 +145,7 @@ module.exports = function(grunt){
   grunt.registerTask('init', [
     'copy:localEnv'
   ]);
+  
+  grunt.registerTask('test',['run:test']);
   
 };
