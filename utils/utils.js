@@ -9,6 +9,10 @@ var utils = {};
  * This method is based on the format method of the url module : https://www.npmjs.com/package/url#urlformaturlobj
  * It accepts all the arguments of the url.format() method (not all of them are list below)
  * It also accept queryParamsToAdd
+ * 
+ * Note : This method may not be very optimized (since it parses and then formats the url)
+ * and also, it will behave weirdly with bad urls (such as example patterns in APIs)
+ * 
  * @param {String} url
  * @param @optional {Object} [options]
  * @param @optional {String} [options.host]
@@ -43,10 +47,10 @@ utils.formatUrl = function (url, options) {
       // "?" is present but at the end -> nothing to do
       parsedUrl.search += queryToAdd;
     }
-    if(typeof options.port === 'undefined' && typeof options.hostname !== 'undefined'){
+    if (typeof options.port === 'undefined' && typeof options.hostname !== 'undefined') {
       parsedUrl.host = options.hostname;
     }
-    if(typeof options.port !== 'undefined' && options.port != 80 && options.port != 443){
+    if (typeof options.port !== 'undefined' && options.port != 80 && options.port != 443) {
       parsedUrl.host = undefined;
       parsedUrl.hostname = options.host || options.hostname;
     }
@@ -56,6 +60,42 @@ utils.formatUrl = function (url, options) {
   else {
     return url;
   }
+};
+
+/**
+ * Generates a url, adding your params at the end, taking care of "&" and "?"
+ * @param {String} url
+ * @param {Object} params
+ * @returns {String}
+ */
+utils.generateUrl = function (url, params) {
+  // "?" is present but not at the end of the query string (neither "&" at the end)
+  if (url.indexOf('?') > -1 && /\?$/.test(url) === false && /\&$/.test(url) === false) {
+    url += "&";
+  }
+  // "?" not present
+  else if (url.indexOf('?') === -1) {
+    url += "?";
+  }
+  // "?" is present but at the end -> nothing to do
+
+  var queryParams = [];
+  if (typeof params !== 'undefined' && Object.keys(params).length > 0) {
+    for (var param in params) {
+      if (params.hasOwnProperty(param)) {
+        queryParams.push(param + "=" + params[param]);
+      }
+    }
+  }
+
+  if (queryParams.length > 0) {
+    url += queryParams.join('&');
+  }
+  else if (/\?$/.test(url)) {
+    url = url.replace(/\?$/, "");//remove trailing "?" if no params
+  }
+
+  return url;
 };
 
 /**
