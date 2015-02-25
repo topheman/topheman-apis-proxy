@@ -9,10 +9,11 @@ var express = require('express');
 var router = express.Router();
 var proxy = require('express-http-proxy');
 var CURRENT_HANDLER_BASE_PATH = require('./index').endpoint;
-var CURRENT_HANDLER_BASE_PATH_REGEX_REPLACE = new RegExp('^'+CURRENT_HANDLER_BASE_PATH);
+var CURRENT_HANDLER_BASE_PATH_REGEX_REPLACE = new RegExp('^'+CURRENT_HANDLER_BASE_PATH);//regexp that capture the current route (in order to remove it)
+var PROXY_HANDLER_BASE_PATH = process.env.NODE_ENV === 'test' ? "/githubApiMock" : ""//replace with that
+
 // in test mode, a mock of github api is launched on the handler /githubApiMock
-// an other server should be launched to test the user apis routers
-var GITHUB_API_BASE_PATH = process.env.NODE_ENV === 'test' ? 'http://localhost:9000/githubApiMock' : 'https://api.github.com';
+var GITHUB_API_BASE_PATH = process.env.NODE_ENV === 'test' ? 'http://localhost:9000' : 'https://api.github.com';
 var helpers = require('../../utils/helpers');
 
 /* GET users listing. */
@@ -20,7 +21,7 @@ router.get('/*', proxy(GITHUB_API_BASE_PATH,{
   forwardPath: function(req, res) {
     res.headers = {};
     res.headers['Content-Type'] = "application/json";
-    return req.originalUrl.replace(CURRENT_HANDLER_BASE_PATH_REGEX_REPLACE,"");
+    return req.originalUrl.replace(CURRENT_HANDLER_BASE_PATH_REGEX_REPLACE,PROXY_HANDLER_BASE_PATH);
   },
   intercept: function(data, req, res, cb) {
     data = data.toString('utf8');

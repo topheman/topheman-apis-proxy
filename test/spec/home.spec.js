@@ -90,6 +90,7 @@ describe('home page', function () {
                     else{
                       var apiList = Object.keys(result.apis);
                       expect([
+                        'github',
                         'githubApiMock',
                         'testActive1',
                         'testCorsActive1',
