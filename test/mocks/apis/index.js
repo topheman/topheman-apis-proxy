@@ -9,6 +9,7 @@ var config = require('../../../config/environment');
 var path = require('path');
 
 var all = {
+  githubApiMock : require('./githubApiMock'),
   testActive1 : require('./testActive1'),
   testActive2 : require('./testActive2'),
   testActive3 : require('./testActive3'),

@@ -10,7 +10,9 @@ var router = express.Router();
 var proxy = require('express-http-proxy');
 var CURRENT_HANDLER_BASE_PATH = require('./index').endpoint;
 var CURRENT_HANDLER_BASE_PATH_REGEX_REPLACE = new RegExp('^'+CURRENT_HANDLER_BASE_PATH);
-var GITHUB_API_BASE_PATH = 'https://api.github.com';
+// in test mode, a mock of github api is launched on the handler /githubApiMock
+// an other server should be launched to test the user apis routers
+var GITHUB_API_BASE_PATH = process.env.NODE_ENV === 'test' ? 'http://localhost:9000/githubApiMock' : 'https://api.github.com';
 var helpers = require('../../utils/helpers');
 
 /* GET users listing. */

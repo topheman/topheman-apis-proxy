@@ -5,6 +5,10 @@
 // You can run unit tests with `npm test`
 // ==========================================================================
 module.exports = {
+  githubApiMock : {
+    active : true,
+    cors : []
+  },
   home : {
     active : true,
     cors : []
