@@ -13,7 +13,7 @@ var CURRENT_HANDLER_BASE_PATH_REGEX_REPLACE = new RegExp('^'+CURRENT_HANDLER_BAS
 var PROXY_HANDLER_BASE_PATH = process.env.NODE_ENV === 'test' ? "/githubApiMock" : ""//replace with that
 
 // in test mode, a mock of github api is launched on the handler /githubApiMock
-var GITHUB_API_BASE_PATH = process.env.NODE_ENV === 'test' ? 'http://localhost:9000' : 'https://api.github.com';
+var GITHUB_API_BASE_PATH = process.env.NODE_ENV === 'test' ? ('http://localhost:'+(process.env.PORT || 9000)) : 'https://api.github.com';
 var helpers = require('../../utils/helpers');
 
 /* GET users listing. */
