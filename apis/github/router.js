@@ -25,6 +25,7 @@ router.get('/*', proxy(GITHUB_API_BASE_PATH,{
   },
   intercept: function(data, req, res, cb) {
     data = data.toString('utf8');
+    data = helpers.transformResponseBody.replaceBaseUrlInJson(data, req, GITHUB_API_BASE_PATH);
     cb(null, data);
   },
   decorateRequest: function ( req ) {

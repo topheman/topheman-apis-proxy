@@ -6,7 +6,7 @@ var utils = require('../../utils/utils');
 
 describe('utils', function () {
 
-  describe('generateUrl', function () {
+  describe('formatUrl', function () {
 
 
     describe('simple query params add', function () {
