@@ -9,8 +9,9 @@ var mockRequest = function (url, body) {
   this.url = url;
   this.body = body;
   this.parsedRequest = urlHelper.parse(url);
-  this.protocol = this.parsedRequest.protocol.replace(':','');//express doesn't keep the column
+  this.protocol = this.parsedRequest.protocol.replace(':', '');//express doesn't keep the column
   this.baseUrl = this.parsedRequest.path;
+  this.originalUrl = this.baseUrl;
   this.get = function (key) {
     var result;
     switch (key) {
@@ -29,7 +30,7 @@ var mockResponse = require('../mocks/apis/githubApiMock/responses/root');
 var API_BASE_URL_PATH_TO_REPLACE = 'https://api.github.com/';
 var API_BASE_URL_PATH = 'http://localhost:9000/';
 
-describe('utils', function () {
+describe('helpers', function () {
 
   describe('transformResponseBody', function () {
 
@@ -44,6 +45,38 @@ describe('utils', function () {
 
       it('base url should have changed', function () {
         expect(responseBody.current_user_url).to.be.equal('http://localhost:9000/user');
+      });
+
+    });
+
+  });
+
+  describe('getApiBasePath', function () {
+
+    it('should return http://localhost:9000', function () {
+      expect(helpers.getApiBasePath('https://api.github.com')).to.be.equal('http://localhost:9000');
+    });
+
+  });
+
+  describe('forwardPathUrlReplacer', function () {
+
+    describe('Factory', function () {
+
+      var request;
+
+      beforeEach(function () {
+        request = new mockRequest('http://localhost:9000/myApiHandler', {"foo": "bar"});
+      });
+
+      it('dev / prod mode', function () {
+        var forwardPathUrlReplacer = helpers.forwardPathUrlReplacer.Factory('/myApiHandler');
+        expect(forwardPathUrlReplacer(request)).to.be.equal('');
+      });
+
+      it('test mode', function () {
+        var forwardPathUrlReplacer = helpers.forwardPathUrlReplacer.Factory('/myApiHandler', '/myApiHandlerMock');
+        expect(forwardPathUrlReplacer(request)).to.be.equal('/myApiHandlerMock');
       });
 
     });
