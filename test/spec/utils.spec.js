@@ -91,4 +91,32 @@ describe('utils', function () {
 
   });
 
+  describe('generateUrl', function () {
+
+      it('should not change url if no params', function () {
+        expect(utils.generateUrl('http://dev.topheman.com')).to.equal('http://dev.topheman.com');
+      });
+
+      it('should not change url if empty params', function () {
+        expect(utils.generateUrl('http://dev.topheman.com',{})).to.equal('http://dev.topheman.com');
+      });
+
+      it('should remove ? if no params', function () {
+        expect(utils.generateUrl('http://dev.topheman.com?')).to.equal('http://dev.topheman.com');
+      });
+
+      it('should add ?foo=true', function () {
+        expect(utils.generateUrl('http://dev.topheman.com', {foo: true})).to.equal('http://dev.topheman.com?foo=true');
+      });
+
+      it('should add &bar=false', function () {
+        expect(utils.generateUrl('http://dev.topheman.com?foo=true', {bar: false})).to.equal('http://dev.topheman.com?foo=true&bar=false');
+      });
+
+      it('should add bar=false', function () {
+        expect(utils.generateUrl('http://dev.topheman.com?foo=true&', {bar: false})).to.equal('http://dev.topheman.com?foo=true&bar=false');
+      });
+
+  });
+
 });
