@@ -26,7 +26,6 @@ helpers.transformResponseBody = {
         return value;
       }
     });
-
     return JSON.stringify(body);
   }
 };
