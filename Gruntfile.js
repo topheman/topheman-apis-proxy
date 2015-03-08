@@ -38,11 +38,11 @@ module.exports = function(grunt){
       },
       dev: {
         NODE_ENV: 'development',
-        DEBUG: 'http'
+        DEBUG: 'http,errors'
       },
       test: {
         NODE_ENV: 'test',
-        DEBUG: 'http'
+        DEBUG: 'http,errors'
       },
       all: localEnv
     },

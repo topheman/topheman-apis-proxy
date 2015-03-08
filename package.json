@@ -7,11 +7,11 @@
     "start": "node ./bin/www",
     "test": "NODE_ENV=test PORT=9000 MOCHA_IS_ACTIVE=true ./node_modules/mocha/bin/mocha",
     "nodemon": "nodemon ./bin/www",
-    "dev": "NODE_ENV=development DEBUG=http npm start",
-    "debug": "NODE_ENV=development DEBUG=http npm run nodemon",
+    "dev": "NODE_ENV=development DEBUG=http,errors npm start",
+    "debug": "NODE_ENV=development DEBUG=http,errors npm run nodemon",
     "prod": "NODE_ENV=production DEBUG=http npm start",
-    "www-test": "NODE_ENV=test DEBUG=http npm start",
-    "www-test-debug": "NODE_ENV=test DEBUG=http npm run nodemon"
+    "www-test": "NODE_ENV=test DEBUG=http,errors npm start",
+    "www-test-debug": "NODE_ENV=test DEBUG=http,errors npm run nodemon"
   },
   "dependencies": {
     "body-parser": "~1.8.1",
