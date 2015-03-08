@@ -83,8 +83,7 @@ app.use(function (req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
-    console.log(err.message);
-    res.status(err.status || 500);
+    console.log(err.message, err.status)
     res.json({
       error:{
         message: err.message,
@@ -98,6 +97,7 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
+  console.log('error production');
   res.status(err.status || 500);
   res.json({
     error:{

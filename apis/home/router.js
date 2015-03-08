@@ -38,7 +38,7 @@ router.get('/', function(req, res) {
   for(var api in apis){
     if(typeof config[api] === 'object' && apis[api].endpoint !== '/' && config[api].active === true){
       infos.apis[api] = {
-        "endpoint" : baseEndpoint+apis[api].endpoint,
+        "endpoint" : baseEndpoint+apis[api].endpoint + (/\/$/.test(baseEndpoint+apis[api].endpoint) ? "" : "/"),
         "description" : apis[api].description
       };
     }

@@ -26,4 +26,10 @@ router.get('/users/topheman', function (req, res) {
   res.json(json);
 });
 
+router.get('/errors/:statusCode', function (req, res) {
+  res.status(req.params.statusCode)
+          .set('Content-Type', 'text/html')
+          .send('<p>Error http '+req.params.statusCode+'</p>');
+});
+
 module.exports = router;
