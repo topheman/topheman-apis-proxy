@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var debug = require('debug')('errors');
 
 var corsPlugin = require('./plugins/cors');
+var disableJsonpPlugin = require('./plugins/disableJsonp');
 
 var app = express();
 
@@ -31,8 +32,8 @@ app.set('view engine', 'ejs');
 
 for(var api in apisDescription){
   if(typeof apisConfiguration[api] === 'object' && apisConfiguration[api].active === true){
-    //CORS setup
     corsPlugin(apisDescription[api], apisConfiguration[api], app);
+    disableJsonpPlugin(apisDescription[api], apisConfiguration[api], app);
     //api endpoint setup - default entry point of handler is a module called "router" in each api folder
     app.use(apisDescription[api].endpoint, require(path.resolve(apisDescription[api].path,'./router')) );
   }
@@ -52,6 +53,7 @@ app.use(function (req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     debug(err.message, err.status);
+    res.status(err.status || 500);
     res.json({
       error:{
         message: err.message,

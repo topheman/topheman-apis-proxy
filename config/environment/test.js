@@ -7,7 +7,8 @@
 module.exports = {
   github : {
     active : true,
-    cors : []
+    cors : [],
+    jsonp : "cb"
   },
   githubApiMock : {
     active : true,
