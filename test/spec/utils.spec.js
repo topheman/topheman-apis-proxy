@@ -55,12 +55,12 @@ describe('utils', function () {
 
     describe('changing host (with "host" attribute) and changing port', function () {
 
-      it('should only change host to google.com and add port 9000', function () {
-        expect(utils.formatUrl('http://dev.topheman.com', {host: 'google.com', port: 9000})).to.equal('http://google.com:9000/');
+      it('should only change host to google.com and add port 8000', function () {
+        expect(utils.formatUrl('http://dev.topheman.com', {host: 'google.com', port: 8000})).to.equal('http://google.com:8000/');
       });
 
-      it('should add ?foo=true and change host to google.com and add port 9000', function () {
-        expect(utils.formatUrl('http://dev.topheman.com', {queryParamsToAdd: 'foo=true', host: 'google.com', port: 9000})).to.equal('http://google.com:9000/?foo=true');
+      it('should add ?foo=true and change host to google.com and add port 8000', function () {
+        expect(utils.formatUrl('http://dev.topheman.com', {queryParamsToAdd: 'foo=true', host: 'google.com', port: 8000})).to.equal('http://google.com:8000/?foo=true');
       });
 
     });
@@ -79,12 +79,12 @@ describe('utils', function () {
 
     describe('changing host (with "hostname" attribute) and changing port', function () {
 
-      it('should only change host to google.com and add port 9000', function () {
-        expect(utils.formatUrl('http://dev.topheman.com', {hostname: 'google.com', port: 9000})).to.equal('http://google.com:9000/');
+      it('should only change host to google.com and add port 8000', function () {
+        expect(utils.formatUrl('http://dev.topheman.com', {hostname: 'google.com', port: 8000})).to.equal('http://google.com:8000/');
       });
 
-      it('should add ?foo=true and change host to google.com and add port 9000', function () {
-        expect(utils.formatUrl('http://dev.topheman.com', {queryParamsToAdd: 'foo=true', hostname: 'google.com', port: 9000})).to.equal('http://google.com:9000/?foo=true');
+      it('should add ?foo=true and change host to google.com and add port 8000', function () {
+        expect(utils.formatUrl('http://dev.topheman.com', {queryParamsToAdd: 'foo=true', hostname: 'google.com', port: 8000})).to.equal('http://google.com:8000/?foo=true');
       });
 
     });

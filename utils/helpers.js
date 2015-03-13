@@ -32,14 +32,14 @@ helpers.transformResponseBody = {
 
 /**
  * In dev/prod mode, this method will return you apiBasePath,
- * In test mode, it will return you http://localhost:9000 (at least the port used on process.env.PORT)
+ * In test mode, it will return you http://localhost:8000 (at least the port used on process.env.PORT)
  * This is only for better reading and force unit testing
  * @param {string} apiBasePath
  * @returns {string}
  */
 helpers.getApiBasePath = function(apiBasePath){
   if(process.env.NODE_ENV === 'test'){
-    return 'http://localhost:'+(process.env.PORT || 9000);
+    return 'http://localhost:'+(process.env.PORT || 8000);
   }
   else{
     return apiBasePath;

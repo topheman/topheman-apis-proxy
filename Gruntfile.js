@@ -4,6 +4,8 @@ module.exports = function(grunt){
   
   require('load-grunt-tasks')(grunt);
   
+  var defaultPort = 8000;
+  
   try{
     var localEnv = require('./config/local.env');
   }
@@ -17,7 +19,7 @@ module.exports = function(grunt){
 
     express: {
       options: {
-        port: process.env.PORT || 9000
+        port: process.env.PORT || defaultPort
       },
       dev: {
         options: {
@@ -65,7 +67,7 @@ module.exports = function(grunt){
         script: 'bin/www',
         options: {
           env: {
-            PORT: process.env.PORT || 9000
+            PORT: process.env.PORT || defaultPort
           },
           callback: function (nodemon) {
             nodemon.on('log', function (event) {
