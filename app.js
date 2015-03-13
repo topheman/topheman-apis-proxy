@@ -6,14 +6,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var expressCors = require('express-cors');
-var cors = require('cors');
-var config = require('./config/environment');
 var debug = require('debug')('errors');
+
+var corsPlugin = require('./plugins/cors');
 
 var app = express();
 
-var apis = require('./apis')(app.get('env'));
+var apisConfiguration = require('./config/environment');
+var apisDescription = require('./apis')(app.get('env'));
 
 // uncomment after placing your favicon in /public
 app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -29,45 +29,12 @@ app.use(cookieParser());
 app.set('views', __dirname+'/views');
 app.set('view engine', 'ejs');
 
-function getCorsOptions(apiOptions){
-  var result = false;
-  if(typeof apiOptions.cors === 'undefined' || apiOptions.cors === false){
-    result = false;
-  }
-  else if(apiOptions.cors === true){
-    result = true;
-  }
-  else if(apiOptions.cors instanceof Array){
-    if(apiOptions.cors.length === 0){
-      result = false;
-    }
-    else if(apiOptions.cors.indexOf('*') > -1){
-      result = true;
-    }
-    else{
-      result = apiOptions.cors;
-    }
-  }
-  else if(typeof apiOptions.cors === 'string'){
-    result = [apiOptions.cors];
-  }
-  return result;
-}
-
-for(var api in apis){
-  if(typeof config[api] === 'object' && config[api].active === true){
+for(var api in apisDescription){
+  if(typeof apisConfiguration[api] === 'object' && apisConfiguration[api].active === true){
     //CORS setup
-    var corsOptionsFromConfig = getCorsOptions(config[api]);
-    if(corsOptionsFromConfig === true){
-      app.use(apis[api].endpoint,cors());
-    }
-    else if(corsOptionsFromConfig instanceof Array && corsOptionsFromConfig.length > 0){
-      app.use(apis[api].endpoint,expressCors({
-        allowedOrigins : corsOptionsFromConfig
-      }));
-    }
+    corsPlugin(apisDescription[api], apisConfiguration[api], app);
     //api endpoint setup - default entry point of handler is a module called "router" in each api folder
-    app.use(apis[api].endpoint, require(path.resolve(apis[api].path,'./router')) );
+    app.use(apisDescription[api].endpoint, require(path.resolve(apisDescription[api].path,'./router')) );
   }
 }
 
