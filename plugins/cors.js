@@ -3,6 +3,11 @@
 var expressCors = require('express-cors');
 var cors = require('cors');
 
+/**
+ * 
+ * @param {Object} apiConfiguration
+ * @returns {apiConfiguration.cors|Array|Boolean} An object that can be passed to cors or express-cors
+ */
 function getCorsOptions(apiConfiguration){
   var result = false;
   if(typeof apiConfiguration.cors === 'undefined' || apiConfiguration.cors === false){
@@ -27,6 +32,14 @@ function getCorsOptions(apiConfiguration){
   }
   return result;
 }
+
+/**
+ * Adds a middleware that will block cors, based on api configuration
+ * If match will return http 403
+ * @param {Object} apiDescription
+ * @param {Object} apiConfiguration
+ * @param {Express.App} app
+ */
 
 function addCorsPlugin(apiDescription, apiConfiguration, app){
   //CORS setup
