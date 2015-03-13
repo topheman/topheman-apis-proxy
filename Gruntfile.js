@@ -95,6 +95,23 @@ module.exports = function(grunt){
     }
     
   });
+  
+  grunt.registerTask('initProductionBuildConfig', function(){
+    
+    var file = grunt.file.read('config/environment/production.js');
+    file = [
+      '/**',
+      ' * This file is specific to your build',
+      ' * It won\'t be used in development',
+      ' * It contains de configuration that will override the production.js file in /dist',
+      ' * when you\'ll run the grunt build task',
+      ' */',
+      '',
+      ''
+    ].join('\n') + file;
+    grunt.file.write('config/environment/production.build.js',file);
+    
+  });
 
   grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
     this.async();
@@ -145,7 +162,8 @@ module.exports = function(grunt){
   });
   
   grunt.registerTask('init', [
-    'copy:localEnv'
+    'copy:localEnv',
+    'initProductionBuildConfig'
   ]);
   
   grunt.registerTask('test',['run:test']);
