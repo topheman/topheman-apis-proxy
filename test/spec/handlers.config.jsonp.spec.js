@@ -8,14 +8,14 @@ describe('Handlers configuration - disableJsonp part', function () {
 
   it('option.jsonp === cb + request ?cb=foo should http 403', function (done) {
     request(app)
-            .get('/github/users/topheman?cb=foo')
+            .get('/testJsonp?cb=foo')
             .expect(403)
             .end(done);
   });
 
   it('option.jsonp === cb + request ?callback=foo should http 200', function (done) {
     request(app)
-            .get('/github/users/topheman?callback=foo')
+            .get('/testActive1?callback=foo')
             .expect(200)
             .end(done);
   });

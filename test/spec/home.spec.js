@@ -100,7 +100,10 @@ describe('home page', function () {
                         'testCorsActive5',
                         'testCorsPattern1',
                         'testCorsPattern2',
-                        'testCorsPattern3' 
+                        'testCorsPattern3',
+                        'testJsonp',
+                        'testThrottle',
+                        'testToken'
                       ]).to.eql(apiList);
                     }
                   }

@@ -7,8 +7,7 @@
 module.exports = {
   github : {
     active : true,
-    cors : [],
-    jsonp : "cb"
+    cors : []
   },
   githubApiMock : {
     active : true,
@@ -66,5 +65,18 @@ module.exports = {
   testCorsPattern3 : {
     active : true,
     cors : ["*.foo.com","bar.com"]
+  },
+  testJsonp : {
+    active : true,
+    cors : [],
+    jsonp : "cb"
+  },
+  testThrottle : {
+    active : true,
+    cors : []
+  },
+  testToken : {
+    active : true,
+    cors : []
   }
 };
