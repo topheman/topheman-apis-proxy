@@ -96,6 +96,7 @@ module.exports = function(grunt){
     
   });
   
+  //for the moment, this task is not used
   grunt.registerTask('initProductionBuildConfig', function(){
     
     var file = grunt.file.read('config/environment/production.js');
@@ -162,8 +163,8 @@ module.exports = function(grunt){
   });
   
   grunt.registerTask('init', [
-    'copy:localEnv',
-    'initProductionBuildConfig'
+    'copy:localEnv'
+//    ,'initProductionBuildConfig'
   ]);
   
   grunt.registerTask('test',['run:test']);
