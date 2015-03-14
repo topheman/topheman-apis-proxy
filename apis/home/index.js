@@ -14,5 +14,7 @@
 
 module.exports = {
   "endpoint" : "/",
+  "title" : "Home",
+  "description" : require('../../package.json').description,
   "path" : __dirname
 };

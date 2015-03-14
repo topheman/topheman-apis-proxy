@@ -14,6 +14,7 @@
 
 module.exports = {
   "endpoint" : "/twitter",
+  "title" : "Twitter API",
   "description" : "This handler gives you access to a subset of the public API of Twitter, learn more at https://dev.twitter.com",
   "path" : __dirname
 };

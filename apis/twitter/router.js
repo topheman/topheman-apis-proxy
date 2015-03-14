@@ -7,6 +7,7 @@
 var express = require('express');
 var router = express.Router();
 var Twit = require('twit');
+var apiDescription = require('./index');
 
 var T = new Twit({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -23,7 +24,11 @@ var routes = {
 
 router.get('/', function (req, res) {
   res.set('Content-Type','text/html');
-  res.send('Welcome to this twitter proxy');
+  res.render(__dirname+'/root.ejs', {
+    layout: 'layout',
+    title : apiDescription.title,
+    description : apiDescription.description
+  });
 });
 
 router.get('/*', function (req, res, next) {

@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../../config/environment');
 var packageJson = require('../../package');
+var apiDescription = require('./index');
 
 var sendAs = {
   html : function(res,infos){
@@ -11,7 +12,12 @@ var sendAs = {
     for(var api in infos.apis){
       infos.apis[api].description = linkify(infos.apis[api].description);
     }
-    res.render('home',infos);
+    res.render(__dirname+'/root.ejs', {
+      layout: 'layout',
+      title : apiDescription.title,
+      description : apiDescription.description,
+      apis: infos.apis
+    });
   },
   json : function(res,infos){
     res.json(infos);

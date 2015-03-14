@@ -12,6 +12,7 @@ var corsPlugin = require('./plugins/cors');
 var disableJsonpPlugin = require('./plugins/disableJsonp');
 
 var app = express();
+var expressLayouts = require('express-ejs-layouts');
 
 var apisConfiguration = require('./config/environment');
 var apisDescription = require('./apis')(app.get('env'));
@@ -25,10 +26,15 @@ if(!process.env.MOCHA_IS_ACTIVE){
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // set the view engine to ejs
 app.set('views', __dirname+'/views');
 app.set('view engine', 'ejs');
+
+// set the layout part
+app.set('layout', 'layout');
+app.use(expressLayouts);
 
 for(var api in apisDescription){
   if(typeof apisConfiguration[api] === 'object' && apisConfiguration[api].active === true){
