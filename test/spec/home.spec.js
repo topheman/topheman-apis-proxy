@@ -92,6 +92,7 @@ describe('home page', function () {
                       expect([
                         'github',
                         'githubApiMock',
+                        'twitter',
                         'testActive1',
                         'testCorsActive1',
                         'testCorsActive2',

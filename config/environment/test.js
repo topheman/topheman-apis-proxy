@@ -79,5 +79,9 @@ module.exports = {
   testToken : {
     active : true,
     cors : []
+  },
+  twitter : {
+    active : true,
+    cors : []
   }
 };

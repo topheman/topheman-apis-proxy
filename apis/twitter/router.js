@@ -6,7 +6,7 @@
 
 var express = require('express');
 var router = express.Router();
-var Twit = require('twit');
+var Twit = process.env.NODE_ENV === 'test' ? require('./twitt.stub') : require('twit');
 var apiDescription = require('./index');
 
 var T = new Twit({

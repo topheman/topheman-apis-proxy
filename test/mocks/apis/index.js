@@ -11,6 +11,7 @@ var path = require('path');
 var all = {
   github : require('../../../apis/github'),
   githubApiMock : require('./githubApiMock'),
+  twitter : require('../../../apis/twitter'),
   testActive1 : require('./testActive1'),
   testActive2 : require('./testActive2'),
   testActive3 : require('./testActive3'),
