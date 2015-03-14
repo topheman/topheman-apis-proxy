@@ -55,4 +55,12 @@ router.get('/*', function (req, res, next) {
   });
 });
 
+//disallow POST requests, return 403
+
+router.post('/*', function (req, res, next) {
+  var error = new Error('Forbidden : No POST requests allowed');
+  error.status = 403;
+  next(error);
+});
+
 module.exports = router;
