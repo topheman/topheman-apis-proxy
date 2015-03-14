@@ -11,6 +11,7 @@
 
 var all = {
   github : require('./github'),
+  twitter : require('./twitter'),
   home : require('./home')
 };
 
