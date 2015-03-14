@@ -23,8 +23,8 @@ var all = {
   testCorsPattern1 : require('./testCorsPattern1'),
   testCorsPattern2 : require('./testCorsPattern2'),
   testCorsPattern3 : require('./testCorsPattern3'),
+  testDelay : require('./testDelay'),
   testJsonp : require('./testJsonp'),
-  testThrottle : require('./testThrottle'),
   testToken : require('./testToken'),
   home : require(path.resolve(config.root,'./apis/home'))
 };

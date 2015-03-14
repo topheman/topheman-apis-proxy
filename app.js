@@ -10,6 +10,7 @@ var debug = require('debug')('errors');
 
 var corsPlugin = require('./plugins/cors');
 var disableJsonpPlugin = require('./plugins/disableJsonp');
+var delayPlugin = require('./plugins/delay');
 
 var app = express();
 var expressLayouts = require('express-ejs-layouts');
@@ -40,6 +41,7 @@ for(var api in apisDescription){
   if(typeof apisConfiguration[api] === 'object' && apisConfiguration[api].active === true){
     corsPlugin(apisDescription[api], apisConfiguration[api], app);
     disableJsonpPlugin(apisDescription[api], apisConfiguration[api], app);
+    delayPlugin(apisDescription[api], apisConfiguration[api], app);
     //api endpoint setup - default entry point of handler is a module called "router" in each api folder
     app.use(apisDescription[api].endpoint, require(path.resolve(apisDescription[api].path,'./router')) );
   }

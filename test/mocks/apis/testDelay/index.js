@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  "endpoint" : "/testThrottle",
+  "endpoint" : "/testDelay",
   "description" : "This is a mock handler",
   "path" : __dirname
 };

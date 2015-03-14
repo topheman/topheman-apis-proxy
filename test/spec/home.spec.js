@@ -101,8 +101,8 @@ describe('home page', function () {
                         'testCorsPattern1',
                         'testCorsPattern2',
                         'testCorsPattern3',
+                        'testDelay',
                         'testJsonp',
-                        'testThrottle',
                         'testToken'
                       ]).to.eql(apiList);
                     }

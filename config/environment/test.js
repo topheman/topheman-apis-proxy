@@ -66,14 +66,15 @@ module.exports = {
     active : true,
     cors : ["*.foo.com","bar.com"]
   },
+  testDelay : {
+    active : true,
+    cors : [],
+    delay: 500
+  },
   testJsonp : {
     active : true,
     cors : [],
     jsonp : "cb"
-  },
-  testThrottle : {
-    active : true,
-    cors : []
   },
   testToken : {
     active : true,
