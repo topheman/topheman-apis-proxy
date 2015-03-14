@@ -69,7 +69,7 @@ module.exports = {
   testDelay : {
     active : true,
     cors : [],
-    delay: 500
+    delay: 50
   },
   testJsonp : {
     active : true,
