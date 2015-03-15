@@ -28,7 +28,7 @@ var mockRequest = function (url, body) {
 var mockResponse = require('../mocks/apis/githubApiMock/responses/root');
 
 var API_BASE_URL_PATH_TO_REPLACE = 'https://api.github.com/';
-var API_BASE_URL_PATH = 'http://localhost:8000/';
+var API_BASE_URL_PATH = 'http://localhost:8001/';
 
 describe('helpers', function () {
 
@@ -44,7 +44,7 @@ describe('helpers', function () {
       });
 
       it('base url should have changed', function () {
-        expect(responseBody.current_user_url).to.be.equal('http://localhost:8000/user');
+        expect(responseBody.current_user_url).to.be.equal('http://localhost:8001/user');
       });
 
     });
@@ -53,8 +53,8 @@ describe('helpers', function () {
 
   describe('getApiBasePath', function () {
 
-    it('should return http://localhost:8000', function () {
-      expect(helpers.getApiBasePath('https://api.github.com')).to.be.equal('http://localhost:8000');
+    it('should return http://localhost:8001', function () {
+      expect(helpers.getApiBasePath('https://api.github.com')).to.be.equal('http://localhost:8001');
     });
 
   });
@@ -66,7 +66,7 @@ describe('helpers', function () {
       var request;
 
       beforeEach(function () {
-        request = new mockRequest('http://localhost:8000/myApiHandler', {"foo": "bar"});
+        request = new mockRequest('http://localhost:8001/myApiHandler', {"foo": "bar"});
       });
 
       it('dev / prod mode', function () {

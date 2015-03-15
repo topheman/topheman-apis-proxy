@@ -31,15 +31,24 @@ helpers.transformResponseBody = {
 };
 
 /**
- * In dev/prod mode, this method will return you apiBasePath,
- * In test mode, it will return you http://localhost:8000 (at least the port used on process.env.PORT)
+ * When I launch npm test, I start one server on which one the tests are passed
+ * and an other one on port 8001 which serves the mock APIs to be proxied (see before hooks)
+ * so this helpers returns different urls :
+ * 
+ * In dev/prod mode, this method will return you apiBasePath (same param you passed),
+ * In test mode, it will return you http://localhost:8000 (base path of the test server launched bu grunt serve:test)
+ * In test mode, when npm test is run , it will return http://localhost:8001 (base path of the test server launched when npm test)
  * This is only for better reading and force unit testing
  * @param {string} apiBasePath
  * @returns {string}
  */
 helpers.getApiBasePath = function(apiBasePath){
-  if(process.env.NODE_ENV === 'test'){
-    return 'http://localhost:'+(process.env.PORT || 8000);
+  if(process.env.NODE_ENV === 'test' && process.env.MOCHA_IS_ACTIVE == "true"){
+    return 'http://localhost:8001';
+  }
+  else if(process.env.NODE_ENV === 'test'){
+    console.log('DIDNT FIND MOCHA_IS_ACTIVE');
+    return 'http://localhost:8000';
   }
   else{
     return apiBasePath;

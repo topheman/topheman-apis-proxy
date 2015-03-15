@@ -4,6 +4,7 @@ var app = require('../../app');
 var request = require('supertest');
 var should = require('should');
 var expect = require('chai').expect;
+var server;
 
 describe('api.github', function () {
 
@@ -16,6 +17,19 @@ describe('api.github', function () {
   });
 
   describe('proxy', function () {
+
+    before(function (done) {
+      app = require('../../app');
+      server = app.listen(8001, function () {
+        //console.log('listening to 8001');
+        done();
+      });
+    });
+
+    after(function () {
+      //console.log('closing to 8001');
+      server.close();
+    });
 
     it('should proxy api', function (done) {
       request(app)
@@ -31,16 +45,16 @@ describe('api.github', function () {
               .expect(200)
               .expect('Content-Type', 'application/json; charset=utf-8')
               .expect(function (res) {
-                try{
+                try {
                   var result = res.body;
-                  if(!res.body){
+                  if (!res.body) {
                     return "No body in response";
                   }
-                  else{
-                    expect(result.current_user_url).to.equal(res.request.protocol+'//'+res.request.host+'/github/user');
+                  else {
+                    expect(result.current_user_url).to.equal(res.request.protocol + '//' + res.request.host + '/github/user');
                   }
                 }
-                catch(e){
+                catch (e) {
                   return e.message;
                 }
               })
@@ -61,23 +75,23 @@ describe('api.github', function () {
               .expect(200)
               .expect('Content-Type', 'application/json; charset=utf-8')
               .expect(function (res) {
-                try{
+                try {
                   var result = res.body;
-                  if(!res.body){
+                  if (!res.body) {
                     return "No body in response";
                   }
-                  else{
-                    expect(result.url).to.equal(res.request.protocol+'//'+res.request.host+'/github/users/topheman');
+                  else {
+                    expect(result.url).to.equal(res.request.protocol + '//' + res.request.host + '/github/users/topheman');
                   }
                 }
-                catch(e){
+                catch (e) {
                   return e.message;
                 }
               })
               .end(done);
     });
-    
-    it('should also proxy the "Server Error" status code in http response header',function(done){
+
+    it('should also proxy the "Server Error" status code in http response header', function (done) {
       request(app)
               .get('/github/errors/500')
               .expect(500)

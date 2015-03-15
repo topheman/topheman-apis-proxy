@@ -100,14 +100,16 @@ You should find your way and it could benefit others.
 
 ###Unit tests
 
-The code is widely unit tested. To run the the tests :
+The code is widely unit tested. To run the the tests : `npm test`
+
+Note : no request to any APIs will be made while passing unit tests, mocks and stubs are setup so that you can run the tests without internet connexion (without also bothering about rate limits).
+
+You can launch your server in test mode (with the test handlers mounted) on http://localhost:8000.
 
 * `grunt serve:test`
-* `npm test`
+* `grunt serve:test-debug` : usefull to dev/debug your tests
 
-The server has to be running while the test are run, no request to any APIs will be made though, mocks and stubs are setup so that you can run the tests without internet connexion (without also bothering about rate limits).
-
-When you develop your unit tests, you will like to : `grunt serve:test-debug` (it launches the server in test mode with nodemon).
+Keep in mind that `npm test` launches one server on which the test are passed and another on port 8001 that the first one uses to proxy some mocks (but you don't have to bother about it, they automatically start and stop with the npm script).
 
 ##FAQ
 
