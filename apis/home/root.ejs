@@ -1,11 +1,25 @@
-    <p>This server is a proxy to different public APIs to ease frontend POC development. Since public APIs need secret keys and some backend development, you'll make this once and for all, and then you will be able to focus on your front.</p>
-    <ul>
-      <% for(var api in apis) { %>
-      <li>
-        <a href="<%= apis[api].endpoint %>" title="<%= api %>"><%= apis[api].endpoint %></a>
-        <% if(apis[api].description) { %>
-         - <%- apis[api].description %>
-        <% } %>
-      </li>
-      <% }; %>
-    </ul>
+<p>
+  As a frontend developer, when I try new frameworks, make POCs, work on a little personal projects, what I'm missing to make it more interesting for me and the end-users who will test my work is <strong>data</strong>.
+</p>
+<p>
+  This is what this project is about : giving you a backend that will let you access public APIs such as Twitter or Github to get data to feed on and not have to bother about the server-side, focus on the client side.
+</p>
+<p>
+  Find out more on the Github repo : <a href="https://github.com/topheman/topheman-apis-proxy" title="topheman-apis-proxy on github">github.com/topheman/topheman-apis-proxy</a>
+</p>
+<p class="strong">
+  This server is a proxy to different public APIs to ease frontend POC development. Since public APIs need secret keys and some backend development, you'll make this once and for all, and then you will be able to focus on your frontend.
+</p>
+<p>
+  Available APIs :
+</p>
+<ul>
+  <% for(var api in apis) { %>
+  <li>
+    <a href="<%= apis[api].endpoint %>" title="<%= api %>"><%= apis[api].endpoint %></a>
+    <% if(apis[api].description) { %>
+     - <%- apis[api].description %>
+    <% } %>
+  </li>
+  <% }; %>
+</ul>
