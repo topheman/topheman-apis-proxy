@@ -1,5 +1,6 @@
 topheman-apis-proxy
 ===================
+[![Build Status](https://travis-ci.org/topheman/topheman-apis-proxy.svg?branch=master)](https://travis-ci.org/topheman/topheman-apis-proxy)
 
 As a frontend developer, when I try new frameworks, make POCs, work on a little personal projects, what I'm missing to make it more interesting for me and the end-users who will test my work is **data**.
 
@@ -76,7 +77,7 @@ No matter how you deploy, **don't forget to set as environment variables your AP
 
 Once you did that, you can `npm start`.
 
-Note : I use heroku for that, so my deployment routine comes to thats :
+Note : I use heroku for that, so my deployment routine comes down to that :
 
 * Set the environment variables via ssh once :
 	* `heroku config:set NODE_ENV=production`
@@ -93,25 +94,27 @@ Help is welcome ! I accept pull-requests.
 
 As you'll see the code is well modularised, so if you want to :
 
-* make a proxy to an other API
-* add an other plugin
+* [make a proxy to an other API](https://github.com/topheman/topheman-apis-proxy/tree/master/apis)
+* [add an other plugin](https://github.com/topheman/topheman-apis-proxy/tree/master/plugins)
 
 You should find your way and it could benefit others.
 
 ###Unit tests
 
-The code is widely unit tested. To run the the tests : `npm test`
+The code is widely unit tested. To run the tests : `npm test`
 
 Note : no request to any APIs will be made while passing unit tests, mocks and stubs are setup so that you can run the tests without internet connexion (without also bothering about rate limits).
 
 You can launch your server in test mode (with the test handlers mounted) on http://localhost:8000.
 
 * `grunt serve:test`
-* `grunt serve:test-debug` : usefull to dev/debug your tests
+* `grunt serve:test-debug` : usefull to dev/debug your tests (nodemon)
 
 Keep in mind that `npm test` launches one server on which the test are passed and another on port 8001 that the first one uses to proxy some mocks (but you don't have to bother about it, they automatically start and stop with the npm script).
 
 ##FAQ
+
+... section to come ...
 
 ##License
 
