@@ -34,8 +34,7 @@ var formatsAccepted = Object.keys(sendAs);
 router.get('/', function(req, res) {
   var apis = require('../../apis')(req.app.get('env'));
   var port = req.app.settings.port;
-  //@todo temporary fix (don't show port cause of possible reverse proxies in productions)
-  var baseEndpoint = "";//req.protocol + "://" + req.hostname + ( port == 80 || port == 443 ? '' : ':'+port );
+  var baseEndpoint = req.protocol + '://' + req.get('host') + req.baseUrl;
   var infos = {
     "description" : packageJson.description,
     "repo" : packageJson.repository.url,
