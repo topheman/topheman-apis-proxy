@@ -52,6 +52,20 @@ function addCorsPlugin(apiDescription, apiConfiguration, app){
       allowedOrigins : corsOptionsFromConfig
     }));
   }
+  /*
+   * If you're using express-http-proxy (or an other proxy middleware), the code bellow passes
+   * the response cors headers via the request object (so that you can override the response headers from the proxy)
+   * You can use helpers.propagateCorsHeaders for that
+   */
+  app.use(apiDescription.endpoint, function(req, res, next){
+    req.$corsToProxy = {
+      "Access-Control-Allow-Credentials" : res.get('Access-Control-Allow-Credentials'),
+      "Access-Control-Allow-Headers" : res.get('Access-Control-Allow-Headers'),
+      "Access-Control-Allow-Methods" : res.get('Access-Control-Allow-Methods'),
+      "Access-Control-Allow-Origin" : res.get('Access-Control-Allow-Origin')
+    };
+    next();
+  });
 };
 
 module.exports = addCorsPlugin;

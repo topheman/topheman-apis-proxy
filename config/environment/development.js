@@ -9,10 +9,10 @@ module.exports = {
   },
   github : {
     active : true,
-    cors : []
+    cors : ['static2.local']
   },
   twitter : {
     active : true,
-    cors : []
+    cors : ['static2.local']
   }
 };

@@ -44,6 +44,7 @@ router.get('/*', proxy(API_BASE_PATH, {
     return utils.generateUrl(forwardPathUrlReplacer(req), credentialsParams);
   },
   intercept: function (data, req, res, cb) {
+    helpers.propagateCorsHeaders(req,res);
     //manage server error > get them to the end user (prod / dev mode)
     if (res.statusCode >= 400) {
       var error = new Error("Server Error (github), http " + res.statusCode);

@@ -82,4 +82,20 @@ helpers.forwardPathUrlReplacer.Factory = function(endpoint,testEndpoint){
   };
 };
 
+helpers.propagateCorsHeaders = function(request,response){
+  if(!request.$corsToProxy["Access-Control-Allow-Credentials"]){
+    response.set('x-cors-not-allowed',true);
+    //overwrite originals cors headers
+    for(var name in request.$corsToProxy){
+      response.set(name,"");
+    }
+  }
+  else{
+    //set correct cors headers
+    for(var name in request.$corsToProxy){
+      response.set(name,request.$corsToProxy[name]);
+    }
+  }
+};
+
 module.exports = helpers;
