@@ -3,6 +3,7 @@
   "description": "Access your public APIs on the same server, benefite from the existing proxies developed or create yours.",
   "version": "0.5.0",
   "private": true,
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
     "test": "NODE_ENV=test PORT=8000 MOCHA_IS_ACTIVE=true ./node_modules/mocha/bin/mocha",
