@@ -59,7 +59,9 @@ In the `config/environment/` folder, you'll find configuration files for each en
 * delay : to delay the response (use only in dev mode) specify a number in milliseconds
 * token : if you only want to open your api to authenticated requests, you can either set :
 	* a string which you'll have to pass in the `X-Auth-Token` http header
-	* or a function (if you want to match the user to its session or a db), with the following signature (you have examples in the [tests config](https://github.com/topheman/topheman-apis-proxy/blob/develop/config/environment/test.js) - see in the unit tests how it's requested) : ```js
+	* or a function (if you want to match the user to its session or a db), with the following signature (you have examples in the [tests config](https://github.com/topheman/topheman-apis-proxy/blob/develop/config/environment/test.js) - see in the [unit tests](https://github.com/topheman/topheman-apis-proxy/blob/develop/test/spec/handlers.config.token.spec.js) how it's requested) :
+
+```js
 function(token, request, next){
 	if(token === "mytoken"){
 		next(true);//authorized
