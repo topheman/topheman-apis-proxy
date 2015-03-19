@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var debug = require('debug')('errors');
 
+var tokenPlugin = require('./plugins/token');
 var corsPlugin = require('./plugins/cors');
 var disableJsonpPlugin = require('./plugins/disableJsonp');
 var delayPlugin = require('./plugins/delay');
@@ -39,6 +40,7 @@ app.use(expressLayouts);
 
 for(var api in apisDescription){
   if(typeof apisConfiguration[api] === 'object' && apisConfiguration[api].active === true){
+    tokenPlugin(apisDescription[api], apisConfiguration[api], app);
     corsPlugin(apisDescription[api], apisConfiguration[api], app);
     disableJsonpPlugin(apisDescription[api], apisConfiguration[api], app);
     delayPlugin(apisDescription[api], apisConfiguration[api], app);

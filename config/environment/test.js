@@ -76,7 +76,12 @@ module.exports = {
     cors : [],
     jsonp : "cb"
   },
-  testToken : {
+  testToken1 : {
+    active : true,
+    cors : [],
+    token: "mytoken"
+  },
+  testToken2 : {
     active : true,
     cors : []
   },
