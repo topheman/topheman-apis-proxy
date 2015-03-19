@@ -56,7 +56,19 @@ In the `config/environment/` folder, you'll find configuration files for each en
 	* `true` : accepts all CORS
 	* string or array of string like `*.foo.com` or `['*.foo.com','bar.com']` : accepts only the matching domain for cross-origin requests
 * jsonp : to disable jsonp, specify the name of the parameter where the callback is passed (for example in github, it is `callback`)
-* delay : to delay the response (use only in dev mode) specify a nummber in milliseconds
+* delay : to delay the response (use only in dev mode) specify a number in milliseconds
+* token : if you only want to open your api to authenticated requests, you can either set :
+	* a string which you'll have to pass in the `X-Auth-Token` http header
+	* or a function (if you want to match the user to its session or a db), with the following signature (you have examples in the [tests config](https://github.com/topheman/topheman-apis-proxy/blob/develop/config/environment/test.js) - see in the unit tests how it's requested) : ```js
+function(token, request, next){
+	if(token === "mytoken"){
+		next(true);//authorized
+	}
+	else{
+		next(false);//will http 403 Forbidden
+	}
+}
+```
 
 Note : You can skip this part if you don't have any specific configurations.
 

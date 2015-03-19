@@ -79,11 +79,28 @@ module.exports = {
   testToken1 : {
     active : true,
     cors : [],
-    token: "mytoken"
+    token: "mytoken1"
   },
   testToken2 : {
     active : true,
-    cors : []
+    cors : [],
+    token: function(token, req, next){
+      if(token === "mytoken2"){
+        next(true);
+      }
+      else if(req.get('X-Another-Way-To-Auth')){
+        var test = req.get('X-Another-Way-To-Auth').split('.');
+        if(test[1] && test[1] === "mytoken2"){
+          next(true);
+        }
+        else{
+          next(false);
+        }
+      }
+      else{
+        next(false);
+      }
+    }
   },
   twitter : {
     active : true,
