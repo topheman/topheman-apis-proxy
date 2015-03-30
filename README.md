@@ -6,6 +6,10 @@ As a frontend developer, when I try new frameworks, make POCs, work on a little 
 
 This is what this project is about : giving you a backend that will let you access public APIs such as Twitter or Github to get data to feed on and not have to bother about the server-side, focus on the client side.
 
+Projects relying on topheman-apis-proxy :
+
+* [topheman/react-es6](https://github.com/topheman/react-es6)
+
 ##Introduction
 
 This server is expressJS based, it's basically a **proxy for public APIs** (Twitter's and Github's are currently available).

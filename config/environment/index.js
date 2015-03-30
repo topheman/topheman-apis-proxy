@@ -3,6 +3,10 @@
 var path = require('path');
 var _ = require('lodash');
 
+if(!process.env.NODE_ENV){
+  throw new Error("process.env.NODE_ENV missing - don't forget to specify your environment variables - see more at https://github.com/topheman/topheman-apis-proxy#run-in-local");
+}
+
 // All configurations will extend these options
 // ============================================
 var all = {
