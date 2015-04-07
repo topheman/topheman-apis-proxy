@@ -45,6 +45,14 @@ router.get('/*', proxy(API_BASE_PATH, {
   },
   intercept: function (data, req, res, cb) {
     helpers.propagateCorsHeaders(req,res);
+    //if link headers, replace them
+    if(res.get('link')){
+      var newBaseUrl = helpers.getNewBaseUrl(req);
+      var link = res.get('link');
+      link = link.replace(new RegExp(BASE_URL_PATH_TO_REPLACE,"g"), newBaseUrl);
+      link = link.replace(/\&client_id\=[a-z0-9]+&client_secret=[a-z0-9]+/g,"");
+      res.set('link',link);
+    }
     //manage server error > get them to the end user (prod / dev mode)
     if (res.statusCode >= 400) {
       var error = new Error("Server Error (github), http " + res.statusCode);

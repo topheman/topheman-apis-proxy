@@ -2,6 +2,11 @@
 
 var helpers = {};
 
+helpers.getNewBaseUrl = function(req){
+  var newBaseUrl = req.protocol + '://' + req.get('host') + req.baseUrl;
+  return newBaseUrl;
+};
+
 helpers.transformResponseBody = {
   /**
    * This function modifies the body of the request, it must return a string
@@ -14,7 +19,7 @@ helpers.transformResponseBody = {
    * @returns {String}
    */
   replaceBaseUrlInJson : function(body, req, apiBaseUrl){
-    var newBaseUrl = req.protocol + '://' + req.get('host') + req.baseUrl;
+    var newBaseUrl = helpers.getNewBaseUrl(req);
     if(typeof body !== "string"){
       body = JSON.stringify(body);
     }
