@@ -9,6 +9,7 @@ This is what this project is about : giving you a backend that will let you acce
 Projects relying on topheman-apis-proxy :
 
 * [topheman/react-es6](https://github.com/topheman/react-es6)
+* [topheman/react-es6-isomorphic](https://github.com/topheman/react-es6-isomorphic)
 
 ##Introduction
 
