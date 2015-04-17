@@ -9,7 +9,11 @@ module.exports = {
   },
   github : {
     active : true,
-    cors : ["*.topheman.com","topheman.github.io"],
+    cors : [
+      "*.topheman.com",
+      "topheman.github.io",
+      "topheman-react-es6-isomorphic.herokuapp.com"
+    ],
     jsonp : "callback"
   },
   twitter : {
