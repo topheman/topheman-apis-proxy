@@ -3,3 +3,4 @@ nbproject
 npm-debug.log
 config/local.env.js
 config/environment/production.build.js
+.idea
