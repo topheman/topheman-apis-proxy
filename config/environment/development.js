@@ -5,7 +5,7 @@
 module.exports = {
   home : {
     active : true,
-    cors : []
+    cors : ['localhost:*']
   },
   github : {
     active : true,
