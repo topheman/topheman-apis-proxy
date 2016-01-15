@@ -40,7 +40,7 @@ npm install
 grunt init
 ```
 
-Works on both node v0.12.x & v4 ([see travis tests](https://travis-ci.org/topheman/topheman-apis-proxy)).
+Works on node v0.10, v0.12, v4 & v5 ([see travis tests](https://travis-ci.org/topheman/topheman-apis-proxy)).
 
 ##Setup
 
