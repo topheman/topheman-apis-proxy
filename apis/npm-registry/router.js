@@ -33,7 +33,6 @@ router.get('/*', proxy(API_BASE_PATH, {
   forwardPath: function (req, res) {
     res.headers = {};
     res.headers['Content-Type'] = "application/json";
-    console.log(req);
     return utils.generateUrl(forwardPathUrlReplacer(req));
   },
   intercept: function (data, req, res, cb) {
