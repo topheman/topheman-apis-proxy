@@ -14,5 +14,9 @@ module.exports = {
   twitter : {
     active : true,
     cors : ['static2.local']
+  },
+  "npm-registry": {
+    active : true,
+    cors : ['static2.local', 'localhost:*']
   }
 };

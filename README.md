@@ -52,6 +52,7 @@ To retrieve such credentials :
 
 * [For twitter](https://apps.twitter.com/app/new)
 * [For Github](https://github.com/settings/applications/new)
+* For npm registry: no need - I simply added the CORS feature
 
 ### Configuration
 

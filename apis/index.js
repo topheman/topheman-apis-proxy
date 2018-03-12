@@ -12,7 +12,8 @@
 var all = {
   github : require('./github'),
   twitter : require('./twitter'),
-  home : require('./home')
+  home : require('./home'),
+  "npm-registry": require('./npm-registry')
 };
 
 function getApisDescription(environment){

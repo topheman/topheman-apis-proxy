@@ -19,5 +19,9 @@ module.exports = {
   twitter : {
     active : true,
     cors : ["*.topheman.com","topheman.github.io"]
+  },
+  "npm-registry" : {
+    active : true,
+    cors : ["*.topheman.com","topheman.github.io"]
   }
 };
