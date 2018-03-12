@@ -26,8 +26,6 @@ router.use(function (req, res, next) {
   }
 });
 
-console.log(API_BASE_PATH)
-
 /* GET users listing. */
 router.get('/*', proxy(API_BASE_PATH, {
   forwardPath: function (req, res) {
