@@ -33,7 +33,7 @@
     "twit": "^2.1.0"
   },
   "engines": {
-    "node": "^6.11.1"
+    "node": "^8.9.0"
   },
   "devDependencies": {
     "chai": "^2.0.0",
