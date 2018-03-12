@@ -11,7 +11,7 @@ Projects relying on topheman-apis-proxy :
 * [topheman/react-es6](https://github.com/topheman/react-es6)
 * [topheman/react-es6-isomorphic](https://github.com/topheman/react-es6-isomorphic)
 
-##Introduction
+## Introduction
 
 This server is expressJS based, it's basically a **proxy for public APIs** (Twitter's and Github's are currently available).
 
@@ -29,7 +29,7 @@ If you want to contribute (see section bellow) :
 * It's unit tested
 
 
-##Installation
+## Installation
 
 If you don't have grunt, you'll need to `npm install grunt-cli -g`
 
@@ -42,9 +42,9 @@ grunt init
 
 Works on node v0.10, v0.12, v4 & v5 ([see travis tests](https://travis-ci.org/topheman/topheman-apis-proxy)).
 
-##Setup
+## Setup
 
-###Credentials
+### Credentials
 
 Setup your API credentials in `config/local.env.js` - this file was created at the `grunt init` step and will be ignored by git (your credentials will stay on computer).
 
@@ -53,7 +53,7 @@ To retrieve such credentials :
 * [For twitter](https://apps.twitter.com/app/new)
 * [For Github](https://github.com/settings/applications/new)
 
-###Configuration
+### Configuration
 
 In the `config/environment/` folder, you'll find configuration files for each environment development/production/test. For each api, you can specify the following :
 
@@ -81,7 +81,7 @@ function(token, request, next){
 
 Note : You can skip this part if you don't have any specific configurations.
 
-##Run in local
+## Run in local
 
 The following commands will launch a server on http://localhost:8000
 
@@ -92,7 +92,7 @@ The following commands will launch a server on http://localhost:8000
 
 Note : I use grunt tasks to launch the server, so that it will inject the variables you just set in `local.env.js` as environment variables accessible from `process.env`. You can also use the npm scripts I defined in the package.json (you will have to set your env variables manually).
 
-##Deployment
+## Deployment
 
 No matter how you deploy, **don't forget to set as environment variables your API keys** and the `NODE_ENV=production`.
 
@@ -109,7 +109,7 @@ Note : I use heroku for that, so my deployment routine comes down to that :
 * `git push heroku master` (heroku being the remote repo linked to my vm)
 * the server will restart using the `npm start` script which has now all that it needs.
 
-##Contributors
+## Contributors
 
 Help is welcome ! I accept pull-requests.
 
@@ -120,7 +120,7 @@ As you'll see the code is well modularised, so if you want to :
 
 You should find your way and it could benefit others.
 
-###Unit tests
+### Unit tests
 
 The code is widely unit tested. To run the tests : `npm test`
 
@@ -133,11 +133,11 @@ You can launch your server in test mode (with the test handlers mounted) on http
 
 Keep in mind that `npm test` launches one server on which the test are passed and another on port 8001 that the first one uses to proxy some mocks (but you don't have to bother about it, they automatically start and stop with the npm script).
 
-##FAQ
+## FAQ
 
 ... section to come ...
 
-##License
+## License
 
 This software is distributed under an MIT licence.
 
