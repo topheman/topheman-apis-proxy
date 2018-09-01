@@ -13,7 +13,8 @@ var all = {
   github : require('./github'),
   twitter : require('./twitter'),
   home : require('./home'),
-  "npm-registry": require('./npm-registry')
+  "npm-registry": require('./npm-registry'),
+  delay: require('./delay')
 };
 
 function getApisDescription(environment){

@@ -18,5 +18,9 @@ module.exports = {
   "npm-registry": {
     active : true,
     cors : ['static2.local', 'localhost:*']
+  },
+  "delay": {
+    active: true,
+    cors : ['static2.local', 'localhost:*']
   }
 };

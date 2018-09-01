@@ -23,5 +23,9 @@ module.exports = {
   "npm-registry" : {
     active : true,
     cors : ["*.topheman.com","topheman.github.io"]
+  },
+  "delay" : {
+    active : true,
+    cors : ["*.topheman.com","topheman.github.io"]
   }
 };
