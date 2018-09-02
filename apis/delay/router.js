@@ -29,7 +29,17 @@ router.get(`${CURRENT_HANDLER_BASE_PATH}/:milliseconds/*`, (req, res) => {
     delay = 0;
   }
 
-  var proxyReq = request(proxyUrl, (error) => {
+  // retrieve original request headers (traffic might be rejected for host mismatch)
+  const { host, ...headers } = req.headers;
+
+  var proxyReq = request({
+    url: proxyUrl,
+    method: req.method,
+    headers: {
+      ...headers,
+      "X-Forwarded-Host": host
+    }
+  }, (error) => {
     if (error) {
       console.error(error);
     }
